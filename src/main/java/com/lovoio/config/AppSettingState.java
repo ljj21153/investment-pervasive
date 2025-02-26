@@ -19,7 +19,7 @@ public class AppSettingState implements PersistentStateComponent<AppSettingState
 
     private static final Boolean IS_HIDDEN_MODE = false;
 
-    private static final String INDEX_CODES = "s_sh000001,s_sh000300,s_sz399001,rt_hkHSI,gbDji,gb_ixic,gb_inx,hf_YM";
+    private static final String INDEX_CODES = "s_sh000001,s_sh000300,s_sz399006,rt_hkHSI,gbDji,gb_ixic,gb_inx,hf_YM";
 
     private static final String SH_STOCK_CODES = "600585";
 
