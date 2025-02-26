@@ -18,16 +18,15 @@ repositories {
 }
 
 dependencies {
-	  intellijPlatform {
-		//create(type, version)
-		intellijIdeaCommunity("2024.2.5")
+      intellijPlatform {
+        intellijIdeaCommunity("2024.2.5")
 
-		bundledPlugin("com.intellij.java")
+        bundledPlugin("com.intellij.java")
 
-		pluginVerifier()
-		zipSigner()
-		instrumentationTools()		
-	  }
+        pluginVerifier()
+        zipSigner()
+        instrumentationTools()		
+    }
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
 
@@ -39,10 +38,18 @@ intellijPlatform {
     
     version = "1.0.5"
     description = "updated investment-pervasive"
-	ideaVersion {
+    ideaVersion {
       sinceBuild = "241"
       untilBuild = "*.*"
     }
+    changeNotes = """
+     1.0.0: 根据设置窗口从新浪接口获取并展示核心指数，基金，美股，港股，A股数据 <br> 
+     1.0.1: 添加事件日志，配置使用gradle publishPlugin task <br> 
+     1.0.2: 修复数据展示细节错误,代码重构，根据Alibaba coding guidelines进行代码审查处理 <br>
+     1.0.3: 修复多窗口情况下修改数据刷新频率和按钮显示bug,配置输入错误代码兼容,打印debug日志文件 <br>
+     1.0.4: 中文转拼音去依赖直接集成进项目代码 <br>
+	 1.0.5：支持高版本 ideal, 修改无法访问行情的问题。	
+     """
   }
 }
 /*
