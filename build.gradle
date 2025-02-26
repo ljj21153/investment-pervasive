@@ -1,26 +1,51 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.6.3'
+    id 'org.jetbrains.intellij.platform' version '2.2.1'
+	id("org.jetbrains.intellij.platform.migration") version "2.2.1"
 }
 
 group 'com.rocking'
-version '1.0.4'
+version '1.0.5'
 
 repositories {
     maven { url 'https://maven.aliyun.com/repository/google' }
     maven { url 'https://maven.aliyun.com/repository/central' }
     maven { url 'https://maven.aliyun.com/repository/jcenter' }
     mavenCentral()
+    intellijPlatform {
+      defaultRepositories()
+    }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+	  intellijPlatform {
+		//create(type, version)
+		intellijIdeaCommunity("2024.2.5")
+
+		bundledPlugin("com.intellij.java")
+
+		pluginVerifier()
+		zipSigner()
+		instrumentationTools()		
+	  }
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
-intellij {
-    version '2020.1.2'
+intellijPlatform {
+  pluginConfiguration {
+    name = "IP1"
+	id = "my-plugin-id"
+    
+    version = "1.0.5"
+    description = "updated investment-pervasive"
+	ideaVersion {
+      sinceBuild = "241"
+      untilBuild = "*.*"
+    }
+  }
 }
+/*
 patchPluginXml {
     changeNotes """ 
      1.0.0: 根据设置窗口从新浪接口获取并展示核心指数，基金，美股，港股，A股数据 <br> 
@@ -38,5 +63,8 @@ publishPlugin {
         token = System.getenv("GRADLE_PROJECT_IntellijPublishToken")
         println(token)
     }
-}
+}*/
 
+tasks.withType(JavaCompile) {  
+    options.encoding = "UTF-8"  
+}  

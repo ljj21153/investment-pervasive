@@ -48,6 +48,7 @@ public enum HttpClientPool {
 
     public String get(String url) throws Exception {
         HttpGet httpGet = new HttpGet(url);
+        httpGet.setHeader("referer", "http://finance.sina.com.cn");
         return getResponseContent(url, httpGet);
     }
 
