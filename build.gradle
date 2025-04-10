@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'com.rocking'
-version '1.0.5'
+version '1.0.6'
 
 repositories {
     maven { url 'https://maven.aliyun.com/repository/google' }
@@ -20,13 +20,14 @@ repositories {
 dependencies {
       intellijPlatform {
         intellijIdeaCommunity("2024.2.5")
-
         bundledPlugin("com.intellij.java")
 
         pluginVerifier()
         zipSigner()
         instrumentationTools()		
     }
+
+    implementation group: 'com.belerweb', name: 'pinyin4j', version: '2.5.0'
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
 
@@ -36,7 +37,7 @@ intellijPlatform {
     name = "IP1"
 	id = "my-plugin-id"
     
-    version = "1.0.5"
+    version = "1.0.6"
     description = "updated investment-pervasive"
     ideaVersion {
       sinceBuild = "241"
@@ -49,6 +50,7 @@ intellijPlatform {
      1.0.3: 修复多窗口情况下修改数据刷新频率和按钮显示bug,配置输入错误代码兼容,打印debug日志文件 <br>
      1.0.4: 中文转拼音去依赖直接集成进项目代码 <br>
 	 1.0.5：支持高版本 ideal, 修改无法访问行情的问题。	
+	 1.0.6：修复多音字拼音转换错误问题
      """
   }
 }

@@ -115,7 +115,9 @@ public abstract class BaseDataWindow {
                 hashMap,
                 objArray -> {
                     String time = GlobalScheduler.TIME_FORMATTER.format(LocalDateTime.now());
-                    String columnStr = AppSettingState.getInstance().getHiddenMode() ? PinyinUtils.toPinyin(getColumnName()) : getColumnName();
+                    String  columnName = getColumnName();
+                    String columnStr = AppSettingState.getInstance().getHiddenMode() ? PinyinUtils.toPinyin(columnName) : columnName;
+
                     DefaultTableModel model = new DefaultTableModel(objArray, columnStr.split(","));
                     List<BaseDataWindow> windows = windowsMap.get(this.getClass());
                     for (BaseDataWindow window : windows) {
